@@ -1,0 +1,93 @@
+---
+const { currentLang } = Astro.props as { currentLang: 'es'|'en'|'de' };
+const langs = [
+  { code: 'es', name: 'Español', flag: '/images/es.png' },
+  { code: 'en', name: 'English', flag: '/images/en.png' },
+  { code: 'de', name: 'Deutsch', flag: '/images/de.png' }
+] as const;
+---
+<nav aria-label="Language switcher" class="lang-switcher">
+  {langs.map(lang => (
+    <a 
+      href={`/${lang.code}/`} 
+      aria-current={lang.code === currentLang ? 'true' : 'false'}
+      aria-label={`Cambiar idioma a ${lang.name}`}
+      title={lang.name}
+      class={`lang-link ${lang.code === currentLang ? 'active' : ''}`}
+    >
+      <img 
+        src={lang.flag} 
+        alt={`Bandera de ${lang.name}`}
+        width="24" 
+        height="18"
+        loading="lazy"
+      />
+      <span class="lang-name">{lang.code.toUpperCase()}</span>
+    </a>
+  ))}
+</nav>
+
+<style>
+  .lang-switcher {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .lang-link {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+  }
+
+  .lang-link:hover {
+    background: rgba(14, 165, 163, 0.1);
+    border-color: rgba(14, 165, 163, 0.3);
+    transform: translateY(-1px);
+  }
+
+  .lang-link.active {
+    background: rgba(14, 165, 163, 0.15);
+    border-color: var(--brand);
+    color: var(--brand);
+  }
+
+  .lang-link img {
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+  }
+
+  .lang-name {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .lang-link {
+      padding: 0.4rem 0.6rem;
+      gap: 0.3rem;
+    }
+    
+    .lang-link img {
+      width: 20px;
+      height: 15px;
+    }
+    
+    .lang-name {
+      font-size: 0.75rem;
+    }
+  }
+</style>

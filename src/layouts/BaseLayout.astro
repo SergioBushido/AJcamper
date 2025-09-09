@@ -1,0 +1,116 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  lang: 'es' | 'en' | 'de';
+  altHreflangs?: { es: string; en: string; de: string };
+  priceFrom?: number; // precio base por día
+}
+const { title, description, lang, altHreflangs, priceFrom } = Astro.props;
+import '~/styles/global.css';
+import WhatsappButton from "../components/WhatsappButton.astro";
+import Footer from "../components/Footer.astro";
+
+
+const site = Astro.site?.origin ?? 'https://www.tudominio.com';
+const canonical = new URL(Astro.url.pathname, site).toString();
+const brand = 'Aventura Camper';
+---
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <!-- Favicon + SVG -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="mask-icon" href="/favicon.svg" color="#0ea5a3" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="alquiler autocaravana, Tenerife, motorhome, camping, turismo, vacaciones" />
+    <meta name="author" content="Aventura Camper" />
+    <meta name="robots" content="index, follow" />
+    
+    <link rel="canonical" href={canonical} />
+    {altHreflangs && (
+      <>
+        <link rel="alternate" hreflang="es" href={altHreflangs.es} />
+        <link rel="alternate" hreflang="en" href={altHreflangs.en} />
+        <link rel="alternate" hreflang="de" href={altHreflangs.de} />
+        <link rel="alternate" hreflang="x-default" href={altHreflangs.en} />
+      </>
+    )}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={brand} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={`${site}/images/hero.jpg`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" as="image" href="/images/hero.jpg" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    <script type="application/ld+json">
+      {JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: `${brand} — Fiat Enaire 2022 Motorhome Rental`,
+        image: [`${site}/images/hero.jpg`],
+        description,
+        brand: {
+          '@type': 'Brand',
+          name: brand
+        },
+        manufacturer: {
+          '@type': 'Organization',
+          name: 'Fiat'
+        },
+        model: 'Enaire',
+        vehicleModelDate: '2022',
+        vehicleConfiguration: '4 plazas, 3000kg PMA',
+        fuelType: 'Diesel',
+        vehicleTransmission: 'Manual',
+        offers: {
+          '@type': 'Offer',
+          priceCurrency: 'EUR',
+          price: priceFrom ?? 95,
+          availability: 'https://schema.org/InStock',
+          url: canonical,
+          validFrom: new Date().toISOString(),
+          seller: {
+            '@type': 'Organization',
+            name: brand,
+            url: site
+          }
+        },
+        additionalProperty: [
+          {
+            '@type': 'PropertyValue',
+            name: 'Plazas',
+            value: '4'
+          },
+          {
+            '@type': 'PropertyValue',
+            name: 'Peso máximo',
+            value: '3000 kg'
+          },
+          {
+            '@type': 'PropertyValue',
+            name: 'Consumo',
+            value: '6-8 L/100km'
+          },
+          {
+            '@type': 'PropertyValue',
+            name: 'Autonomía',
+            value: '10 días'
+          }
+        ]
+      })}
+    </script>
+  </head>
+  <body>
+    <slot />
+        <WhatsappButton />   <!-- botón fijo -->
+
+  </body>
+</html>

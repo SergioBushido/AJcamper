@@ -1,0 +1,23 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import Header from "~/components/Header.astro";
+import Hero from "~/components/Hero.astro";
+import Gallery from "~/components/Gallery.astro";
+import Specs from "~/components/Specs.astro";
+import Contact from "~/components/Contact.astro";
+import Footer from "~/components/Footer.astro";
+import t from "~/translations/es.json";
+const alt = {
+  es: Astro.site?.origin + '/es/',
+  en: Astro.site?.origin + '/en/',
+  de: Astro.site?.origin + '/de/'
+};
+---
+<BaseLayout title={`${t.brand} — ${t.title}`} description={t.meta_description} lang="es" altHreflangs={alt} priceFrom={95}>
+  <Header t={t} currentLang="es" />
+  <Hero t={t} currentLang="es" />
+  <Gallery t={t} />
+  <Specs t={t} />
+  <Contact t={t} currentLang="es" />
+  <Footer t={t} />
+</BaseLayout>

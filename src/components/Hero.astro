@@ -1,0 +1,85 @@
+---
+const { t, currentLang } = Astro.props as { t:any; currentLang:'es'|'en'|'de' };
+---
+<section class="container hero">
+  <div class="hero-content">
+    <h1>{t.title}</h1>
+    <p class="hero-subtitle">{t.subtitle}</p>
+
+    <!-- Características destacadas -->
+    <div class="hero-features">
+      <div class="feature-badge">
+        <span class="feature-icon">🚐</span>
+        <span>{t.feature_model}</span>
+      </div>
+      <div class="feature-badge">
+        <span class="feature-icon">👥</span>
+        <span>{t.feature_places}</span>
+      </div>
+      <div class="feature-badge">
+        <span class="feature-icon">⚡</span>
+        <span>{t.feature_autonomy}</span>
+      </div>
+      <div class="feature-badge">
+        <span class="feature-icon">⛽</span>
+        <span>{t.feature_consumption}</span>
+      </div>
+    </div>
+
+    <div class="hero-actions">
+      <a class="btn" href={`/${currentLang}/#gallery`}>{t.cta_view_photos}</a>
+      <a class="btn btn-outline" href={`/${currentLang}/#contact`}>{t.cta_contact}</a>
+    </div>
+
+    <div class="hero-price">
+      <span class="price-text">{t.price_from} <strong>95€</strong> {t.per_day}</span>
+    </div>
+
+    <!-- Opciones de reserva destacadas -->
+    <div class="booking-options">
+      <h3 class="booking-title">{t.booking_options}</h3>
+      <div class="booking-cards">
+        <div class="booking-card booking-card-primary">
+          <div class="booking-card-header">
+            <span class="booking-icon">📞</span>
+            <h4>{t.booking_private}</h4>
+          </div>
+          <p class="booking-desc">{t.booking_private_desc}</p>
+          <a href={`/${currentLang}/#contact`} class="btn btn-small">
+            {t.cta_contact}
+          </a>
+        </div>
+        
+        <div class="booking-card booking-card-secondary">
+          <div class="booking-card-header">
+            <span class="booking-icon">🛡️</span>
+            <h4>{t.booking_yescapa}</h4>
+          </div>
+          <p class="booking-desc">{t.booking_yescapa_desc}</p>
+          <a
+            href="https://www.yescapa.es/campers/99514"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-outline btn-small"
+          >
+            {t.cta_yescapa}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-image">
+    <picture>
+      <source srcset="/images/hero.jpg" type="image/jpeg" />
+      <img 
+        src="/images/hero.jpg" 
+        alt="Autocaravana moderna de 4 plazas en Tenerife, perfecta para tus vacaciones" 
+        loading="eager" 
+        decoding="async"
+        width="600"
+        height="400"
+      />
+    </picture>
+  </div>
+</section>

@@ -1,0 +1,26 @@
+---
+const { t } = Astro.props as { t:any };
+
+const path = Astro.url.pathname;           // ej: /es/, /en/cookies
+const seg = path.split('/')[1];            // 'es' | 'en' | 'de' | ''
+const supported = new Set(['es','en','de']);
+const lang = supported.has(seg) ? seg : 'es';
+
+const cookieHref = `/${lang}/cookies`;
+const year = new Date().getFullYear();
+---
+<footer>
+  <div class="container">
+    <small>
+      © {year} Aventura Camper · {t.footer_rights} ·
+      <a href={cookieHref} class="footer-link">Política de Cookies</a>
+    </small>
+  </div>
+</footer>
+
+<style>
+  footer { margin-top:3rem; padding:2rem 0; color:var(--muted);
+           border-top:1px solid #030609; background:#4c4d4f; text-align:center; }
+  .footer-link { color:var(--brand); text-decoration:underline; text-underline-offset:2px; }
+  .footer-link:hover { color:var(--brand-hover); }
+</style>

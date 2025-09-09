@@ -1,0 +1,463 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const year = new Date().getFullYear();
+
+// Übersetzungen für die Cookie-Seite
+const t = {
+  title: "Cookie-Richtlinie",
+  description: "Informationen über die Verwendung von Cookies auf unserer Website",
+  lastUpdated: "Zuletzt aktualisiert",
+  intro: "Bei Aventura Camper respektieren wir Ihre Privatsphäre und möchten transparent über die Verwendung von Cookies auf unserer Website sein.",
+  whatAreCookies: "Was sind Cookies?",
+  whatAreCookiesText: "Cookies sind kleine Textdateien, die auf Ihrem Gerät gespeichert werden, wenn Sie eine Website besuchen. Sie helfen uns, Ihr Browsing-Erlebnis zu verbessern und zu verstehen, wie Sie unsere Website nutzen.",
+  typesOfCookies: "Arten von Cookies, die wir verwenden",
+  technicalCookies: "Technische Cookies",
+  technicalCookiesText: "Diese Cookies sind für den Betrieb der Website unerlässlich. Sie umfassen Session-, Sicherheits- und grundlegende Funktions-Cookies.",
+  analyticsCookies: "Analyse-Cookies",
+  analyticsCookiesText: "Wir verwenden derzeit keine Analyse-, Werbe- oder Tracking-Cookies. Ihre Privatsphäre ist uns wichtig.",
+  howToManage: "Wie verwalte ich Cookies?",
+  howToManageText: "Sie können Cookies über Ihre Browser-Einstellungen steuern und löschen. Beachten Sie, dass das Deaktivieren bestimmter Cookies die Funktionalität der Website beeinträchtigen kann.",
+  contact: "Haben Sie Fragen?",
+  contactText: "Wenn Sie Fragen zu unserer Cookie-Richtlinie haben, zögern Sie nicht, uns zu kontaktieren.",
+  backToHome: "Zurück zur Startseite"
+};
+
+const currentLang = 'de';
+---
+
+<BaseLayout 
+  title={`${t.title} - Aventura Camper`}
+  description={t.description}
+  lang="de"
+>
+  <Header t={t} currentLang={currentLang} />
+  
+  <main class="cookies-page">
+    <div class="container">
+      <!-- Hero section -->
+      <section class="cookies-hero">
+        <div class="cookies-hero-content">
+          <h1>{t.title}</h1>
+          <p class="cookies-subtitle">{t.description}</p>
+          <div class="cookies-badge">
+            <span class="badge">🔒 Datenschutz geschützt</span>
+            <span class="badge">📅 {t.lastUpdated}: {new Date().toLocaleDateString('de-DE')}</span>
+          </div>
+        </div>
+        <div class="cookies-hero-image">
+          <div class="cookies-icon">🍪</div>
+        </div>
+      </section>
+
+      <!-- Content sections -->
+      <div class="cookies-content">
+        <section class="cookies-section">
+          <h2>{t.whatAreCookies}</h2>
+          <p>{t.whatAreCookiesText}</p>
+        </section>
+
+        <section class="cookies-section">
+          <h2>{t.typesOfCookies}</h2>
+          
+          <div class="cookies-grid">
+            <div class="cookie-card">
+              <div class="cookie-card-header">
+                <span class="cookie-icon">⚙️</span>
+                <h3>{t.technicalCookies}</h3>
+              </div>
+              <p>{t.technicalCookiesText}</p>
+              <div class="cookie-status active">Aktiv</div>
+            </div>
+
+            <div class="cookie-card">
+              <div class="cookie-card-header">
+                <span class="cookie-icon">📊</span>
+                <h3>{t.analyticsCookies}</h3>
+              </div>
+              <p>{t.analyticsCookiesText}</p>
+              <div class="cookie-status inactive">Nicht verwendet</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="cookies-section">
+          <h2>{t.howToManage}</h2>
+          <p>{t.howToManageText}</p>
+          
+          <div class="browser-guide">
+            <h3>Browser-Konfiguration:</h3>
+            <div class="browser-list">
+              <div class="browser-item">
+                <span class="browser-icon">🌐</span>
+                <span>Chrome: Einstellungen > Datenschutz und Sicherheit > Cookies</span>
+              </div>
+              <div class="browser-item">
+                <span class="browser-icon">🦊</span>
+                <span>Firefox: Einstellungen > Datenschutz & Sicherheit > Cookies</span>
+              </div>
+              <div class="browser-item">
+                <span class="browser-icon">🧭</span>
+                <span>Safari: Einstellungen > Datenschutz > Cookies</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="cookies-section contact-section">
+          <h2>{t.contact}</h2>
+          <p>{t.contactText}</p>
+          <div class="contact-actions">
+            <a href="/de/#contact" class="btn">Kontakt</a>
+            <a href="https://wa.me/34620323483" class="btn btn-outline" target="_blank" rel="noopener noreferrer">
+              WhatsApp
+            </a>
+          </div>
+        </section>
+      </div>
+
+      <!-- Back to home -->
+      <div class="cookies-footer">
+        <a href="/de/" class="back-link">
+          <span class="back-icon">←</span>
+          {t.backToHome}
+        </a>
+        <p class="copyright">© {year} Aventura Camper. Alle Rechte vorbehalten.</p>
+      </div>
+    </div>
+  </main>
+
+  <Footer t={t} currentLang={currentLang} />
+</BaseLayout>
+
+<style>
+  .cookies-page {
+    min-height: 100vh;
+    background: 
+      radial-gradient(1200px 600px at 80% -10%, rgba(14,165,163,.12), transparent 60%),
+      radial-gradient(800px 400px at -10% 20%, rgba(245,158,11,.10), transparent 55%),
+      var(--bg);
+    padding: 2rem 0;
+  }
+
+  .cookies-hero {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 4rem;
+    padding: 3rem 0;
+  }
+
+  .cookies-hero-content h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    color: var(--text);
+    margin: 0 0 1rem 0;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .cookies-subtitle {
+    font-size: 1.25rem;
+    color: var(--muted);
+    margin: 0 0 2rem 0;
+    line-height: 1.6;
+  }
+
+  .cookies-badge {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .cookies-hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cookies-icon {
+    font-size: 8rem;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  .cookies-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .cookies-section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(6px);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cookies-section:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .cookies-section h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--brand);
+    margin: 0 0 1.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .cookies-section h2::before {
+    content: "🍪";
+    font-size: 1.5rem;
+  }
+
+  .cookies-section p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text);
+    margin: 0 0 1.5rem 0;
+  }
+
+  .cookies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .cookie-card {
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: all 0.2s ease;
+  }
+
+  .cookie-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .cookie-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .cookie-icon {
+    font-size: 1.5rem;
+  }
+
+  .cookie-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .cookie-card p {
+    font-size: 1rem;
+    margin: 0 0 1rem 0;
+  }
+
+  .cookie-status {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .cookie-status.active {
+    background: rgba(34, 197, 94, 0.1);
+    color: #059669;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+  }
+
+  .cookie-status.inactive {
+    background: rgba(107, 114, 128, 0.1);
+    color: #6b7280;
+    border: 1px solid rgba(107, 114, 128, 0.3);
+  }
+
+  .browser-guide {
+    background: rgba(14, 165, 163, 0.05);
+    border: 1px solid rgba(14, 165, 163, 0.2);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .browser-guide h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--brand);
+    margin: 0 0 1rem 0;
+  }
+
+  .browser-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .browser-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .browser-icon {
+    font-size: 1.25rem;
+  }
+
+  .contact-section {
+    background: linear-gradient(135deg, rgba(14, 165, 163, 0.05), rgba(245, 158, 11, 0.05));
+    border: 1px solid rgba(14, 165, 163, 0.2);
+  }
+
+  .contact-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .cookies-footer {
+    text-align: center;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--brand);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--brand);
+    border-radius: 0.75rem;
+    transition: all 0.2s ease;
+    margin-bottom: 2rem;
+  }
+
+  .back-link:hover {
+    background: var(--brand);
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  .back-icon {
+    font-size: 1.25rem;
+  }
+
+  .copyright {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .cookies-hero {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .cookies-hero-content h1 {
+      font-size: 2.5rem;
+    }
+
+    .cookies-icon {
+      font-size: 6rem;
+    }
+
+    .cookies-section {
+      padding: 1.5rem;
+    }
+
+    .cookies-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-actions {
+      flex-direction: column;
+    }
+
+    .contact-actions .btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .cookies-page {
+      padding: 1rem 0;
+    }
+
+    .cookies-hero {
+      padding: 2rem 0;
+    }
+
+    .cookies-hero-content h1 {
+      font-size: 2rem;
+    }
+
+    .cookies-badge {
+      justify-content: center;
+    }
+
+    .cookies-section {
+      padding: 1rem;
+    }
+  }
+
+  /* Animaciones suaves */
+  @media (prefers-reduced-motion: no-preference) {
+    .cookies-section {
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .cookies-section:nth-child(2) { animation-delay: 0.1s; }
+    .cookies-section:nth-child(3) { animation-delay: 0.2s; }
+    .cookies-section:nth-child(4) { animation-delay: 0.3s; }
+    .cookies-section:nth-child(5) { animation-delay: 0.4s; }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

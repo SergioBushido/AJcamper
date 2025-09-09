@@ -1,0 +1,82 @@
+<a
+  href="https://wa.me/34620323483"
+  class="whatsapp-btn"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Chatea con nosotros en WhatsApp"
+  title="Contactar por WhatsApp"
+>
+  <img src="/images/whatsapp.png" alt="WhatsApp" width="28" height="28" />
+  <span class="whatsapp-text">WhatsApp</span>
+</a>
+
+<style>
+  .whatsapp-btn {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 50px;
+    background: #25d366; /* verde WhatsApp */
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,.25);
+    transition: all .2s ease;
+    max-width: 140px;
+  }
+
+  .whatsapp-btn img {
+    width: 28px;
+    height: 28px;
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .whatsapp-text {
+    white-space: nowrap;
+  }
+
+  .whatsapp-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0,0,0,.3);
+    background: #128c7e;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .whatsapp-btn {
+      bottom: 1rem;
+      right: 1rem;
+      padding: 0.6rem 0.8rem;
+      font-size: 0.8rem;
+      max-width: 120px;
+    }
+    
+    .whatsapp-btn img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .whatsapp-text {
+      display: none;
+    }
+    
+    .whatsapp-btn {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      padding: 0;
+      justify-content: center;
+      max-width: none;
+    }
+  }
+</style>
+
