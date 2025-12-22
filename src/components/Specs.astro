@@ -1,13 +1,15 @@
 ---
 import { specs } from "~/data/specs";
-const { t } = Astro.props as { t:any };
+const { t } = Astro.props as { t: any };
 ---
 
 <section id="specs" class="specs-section" aria-label={t.specs_title}>
   <div class="container">
     <div class="specs-header">
       <h2>{t.specs_title}</h2>
-      <p class="specs-subtitle">Fiat Enaire 2022 - Autocaravana de 4 plazas con todas las comodidades</p>
+      <p class="specs-subtitle">
+        Fiat Enaire 2022 - Autocaravana de 4 plazas con todas las comodidades
+      </p>
     </div>
 
     <div class="accordion-container">
@@ -98,12 +100,14 @@ const { t } = Astro.props as { t:any };
         </button>
         <div class="accordion-content">
           <div class="equipment-grid">
-            {specs.driving.map(item => (
-              <div class="equipment-item">
-                <span class="equipment-icon">✓</span>
-                <span class="equipment-text">{item}</span>
-              </div>
-            ))}
+            {
+              specs.driving.map((item) => (
+                <div class="equipment-item">
+                  <span class="equipment-icon">✓</span>
+                  <span class="equipment-text">{item}</span>
+                </div>
+              ))
+            }
           </div>
         </div>
       </div>
@@ -117,12 +121,14 @@ const { t } = Astro.props as { t:any };
         </button>
         <div class="accordion-content">
           <div class="equipment-grid">
-            {specs.living.map(item => (
-              <div class="equipment-item">
-                <span class="equipment-icon">✓</span>
-                <span class="equipment-text">{item}</span>
-              </div>
-            ))}
+            {
+              specs.living.map((item) => (
+                <div class="equipment-item">
+                  <span class="equipment-icon">✓</span>
+                  <span class="equipment-text">{item}</span>
+                </div>
+              ))
+            }
           </div>
         </div>
       </div>
@@ -136,25 +142,29 @@ const { t } = Astro.props as { t:any };
         </button>
         <div class="accordion-content">
           <div class="equipment-section">
-            <h4 class="equipment-section-title">{t.specs_kitchen_title}</h4>
+            <h3 class="equipment-section-title">{t.specs_kitchen_title}</h3>
             <div class="equipment-grid">
-              {specs.kitchen.map(item => (
-                <div class="equipment-item">
-                  <span class="equipment-icon">✓</span>
-                  <span class="equipment-text">{item}</span>
-                </div>
-              ))}
+              {
+                specs.kitchen.map((item) => (
+                  <div class="equipment-item">
+                    <span class="equipment-icon">✓</span>
+                    <span class="equipment-text">{item}</span>
+                  </div>
+                ))
+              }
             </div>
           </div>
           <div class="equipment-section">
-            <h4 class="equipment-section-title">{t.specs_bathroom_title}</h4>
+            <h3 class="equipment-section-title">{t.specs_bathroom_title}</h3>
             <div class="equipment-grid">
-              {specs.bathroom.map(item => (
-                <div class="equipment-item">
-                  <span class="equipment-icon">✓</span>
-                  <span class="equipment-text">{item}</span>
-                </div>
-              ))}
+              {
+                specs.bathroom.map((item) => (
+                  <div class="equipment-item">
+                    <span class="equipment-icon">✓</span>
+                    <span class="equipment-text">{item}</span>
+                  </div>
+                ))
+              }
             </div>
           </div>
         </div>
@@ -195,14 +205,16 @@ const { t } = Astro.props as { t:any };
             </div>
           </div>
           <div class="equipment-section">
-            <h4 class="equipment-section-title">{t.specs_exterior_title}</h4>
+            <h3 class="equipment-section-title">{t.specs_exterior_title}</h3>
             <div class="equipment-grid">
-              {specs.exterior.map(item => (
-                <div class="equipment-item">
-                  <span class="equipment-icon">✓</span>
-                  <span class="equipment-text">{item}</span>
-                </div>
-              ))}
+              {
+                specs.exterior.map((item) => (
+                  <div class="equipment-item">
+                    <span class="equipment-icon">✓</span>
+                    <span class="equipment-text">{item}</span>
+                  </div>
+                ))
+              }
             </div>
           </div>
         </div>
@@ -259,7 +271,7 @@ const { t } = Astro.props as { t:any };
 
   .specs-subtitle {
     font-size: 1.1rem;
-    color: #64748b;
+    color: var(--muted);
     margin: 0;
     font-weight: 500;
   }
@@ -305,7 +317,7 @@ const { t } = Astro.props as { t:any };
   }
 
   .accordion-header[aria-expanded="true"] {
-    background: #0ea5a3;
+    background: var(--brand);
     color: white;
   }
 
@@ -328,7 +340,7 @@ const { t } = Astro.props as { t:any };
     font-size: 1.5rem;
     font-weight: 300;
     transition: transform 0.3s ease;
-    color: #64748b;
+    color: var(--muted);
   }
 
   .accordion-header[aria-expanded="true"] .accordion-toggle {
@@ -367,18 +379,18 @@ const { t } = Astro.props as { t:any };
 
   .spec-item:hover {
     background: #f1f5f9;
-    border-color: #0ea5a3;
+    border-color: var(--brand);
   }
 
   .spec-item.highlight {
     background: linear-gradient(135deg, #f0fdfa, #fef3c7);
-    border-color: #0ea5a3;
+    border-color: var(--brand);
   }
 
   .spec-label {
     font-size: 0.85rem;
     font-weight: 600;
-    color: #64748b;
+    color: var(--muted);
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
@@ -400,7 +412,7 @@ const { t } = Astro.props as { t:any };
   .equipment-section-title {
     font-size: 1rem;
     font-weight: 600;
-    color: #0ea5a3;
+    color: var(--brand-hover);
     margin: 0 0 1rem 0;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid #e2e8f0;
@@ -425,12 +437,12 @@ const { t } = Astro.props as { t:any };
 
   .equipment-item:hover {
     background: #f0fdfa;
-    border-color: #0ea5a3;
+    border-color: var(--brand);
     transform: translateX(2px);
   }
 
   .equipment-icon {
-    color: #0ea5a3;
+    color: var(--brand-hover);
     font-weight: 700;
     font-size: 1rem;
   }
@@ -460,7 +472,7 @@ const { t } = Astro.props as { t:any };
 
   .bed-item:hover {
     background: #f0fdfa;
-    border-color: #0ea5a3;
+    border-color: var(--brand);
     transform: translateY(-2px);
   }
 
@@ -470,7 +482,7 @@ const { t } = Astro.props as { t:any };
     justify-content: center;
     width: 2.5rem;
     height: 2.5rem;
-    background: #0ea5a3;
+    background: var(--brand-hover);
     color: white;
     border-radius: 50%;
     font-weight: 700;
@@ -490,7 +502,7 @@ const { t } = Astro.props as { t:any };
   }
 
   .bed-size {
-    color: #64748b;
+    color: var(--muted);
     font-size: 0.85rem;
   }
 
@@ -547,38 +559,46 @@ const { t } = Astro.props as { t:any };
 
 <script>
   // Accordion functionality
-  document.addEventListener('DOMContentLoaded', function() {
-    const accordionHeaders = document.querySelectorAll('.accordion-header');
-    
-    accordionHeaders.forEach(header => {
-      header.addEventListener('click', function() {
-        const isExpanded = this.getAttribute('aria-expanded') === 'true';
-        const content = this.nextElementSibling;
-        
+  document.addEventListener("DOMContentLoaded", function () {
+    const accordionHeaders = document.querySelectorAll(".accordion-header");
+
+    accordionHeaders.forEach((header) => {
+      header.addEventListener("click", function (e) {
+        const btn = e.currentTarget as HTMLElement;
+        const isExpanded = btn.getAttribute("aria-expanded") === "true";
+        const content = btn.nextElementSibling as HTMLElement;
+
         // Close all other accordions
-        accordionHeaders.forEach(otherHeader => {
-          if (otherHeader !== this) {
-            otherHeader.setAttribute('aria-expanded', 'false');
-            const otherContent = otherHeader.nextElementSibling;
-            otherContent.style.maxHeight = '0';
-            otherContent.style.padding = '0';
-            otherContent.style.display = 'none';
+        accordionHeaders.forEach((otherHeader) => {
+          if (otherHeader !== btn) {
+            otherHeader.setAttribute("aria-expanded", "false");
+            const otherContent = otherHeader.nextElementSibling as HTMLElement;
+            if (otherContent) {
+              otherContent.style.maxHeight = "0";
+              otherContent.style.padding = "0";
+              otherContent.style.display = "none";
+            }
           }
         });
-        
+
         // Toggle current accordion
         if (isExpanded) {
-          this.setAttribute('aria-expanded', 'false');
-          content.style.maxHeight = '0';
-          content.style.padding = '0';
-          content.style.display = 'none';
+          btn.setAttribute("aria-expanded", "false");
+          if (content) {
+            content.style.maxHeight = "0";
+            content.style.padding = "0";
+            content.style.display = "none";
+          }
         } else {
-          this.setAttribute('aria-expanded', 'true');
-          content.style.display = 'block';
-          content.style.maxHeight = 'none';
-          content.style.padding = '1.5rem';
+          btn.setAttribute("aria-expanded", "true");
+          if (content) {
+            content.style.display = "block";
+            content.style.maxHeight = "none";
+            content.style.padding = "1.5rem";
+          }
         }
       });
     });
   });
 </script>
+```

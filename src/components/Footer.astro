@@ -1,14 +1,15 @@
 ---
-const { t } = Astro.props as { t:any };
+const { t } = Astro.props as { t: any };
 
-const path = Astro.url.pathname;           // ej: /es/, /en/cookies
-const seg = path.split('/')[1];            // 'es' | 'en' | 'de' | ''
-const supported = new Set(['es','en','de']);
-const lang = supported.has(seg) ? seg : 'es';
+const path = Astro.url.pathname; // ej: /es/, /en/cookies
+const seg = path.split("/")[1]; // 'es' | 'en' | 'de' | ''
+const supported = new Set(["es", "en", "de"]);
+const lang = supported.has(seg) ? seg : "es";
 
 const cookieHref = `/${lang}/cookies`;
 const year = new Date().getFullYear();
 ---
+
 <footer>
   <div class="container">
     <small>
@@ -19,8 +20,16 @@ const year = new Date().getFullYear();
 </footer>
 
 <style>
-  footer { margin-top:3rem; padding:2rem 0; color:var(--muted);
-           border-top:1px solid #030609; background:#4c4d4f; text-align:center; }
-  .footer-link { color:var(--brand); text-decoration:underline; text-underline-offset:2px; }
-  .footer-link:hover { color:var(--brand-hover); }
+  /* Styles inherited from global.css */
+  footer {
+    text-align: center;
+  }
+  .footer-link {
+    color: var(--brand);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .footer-link:hover {
+    color: var(--brand-hover);
+  }
 </style>

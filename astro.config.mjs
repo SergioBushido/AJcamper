@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 // Cambia esta URL a la definitiva de producción
-const SITE_URL = 'https://www.tudominio.com';
+const SITE_URL = 'https://www.aventuracamper.com'; // TODO: Confirmar dominio final
 
 export default defineConfig({
   site: SITE_URL,

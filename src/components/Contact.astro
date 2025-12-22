@@ -1,14 +1,23 @@
 ---
-const { t, currentLang } = Astro.props as { t:any; currentLang:'es'|'en'|'de' };
-const formAction = 'https://formsubmit.co/sergio.ume@hotmail.com';
+const { t, currentLang } = Astro.props as {
+  t: any;
+  currentLang: "es" | "en" | "de";
+};
+const formAction = "https://formsubmit.co/sergio.ume@hotmail.com";
 
 const msgsByLang = {
-  es: { ok: "✅ ¡Mensaje enviado correctamente! Te responderemos muy pronto.",
-        ko: "⚠️ Hubo un error al enviar el mensaje. Inténtalo de nuevo." },
-  en: { ok: "✅ Message sent successfully! We'll get back to you soon.",
-        ko: "⚠️ Something went wrong. Please try again." },
-  de: { ok: "✅ Nachricht erfolgreich gesendet! Wir melden uns in Kürze.",
-        ko: "⚠️ Fehler beim Senden. Bitte versuche es erneut." }
+  es: {
+    ok: "✅ ¡Mensaje enviado correctamente! Te responderemos muy pronto.",
+    ko: "⚠️ Hubo un error al enviar el mensaje. Inténtalo de nuevo.",
+  },
+  en: {
+    ok: "✅ Message sent successfully! We'll get back to you soon.",
+    ko: "⚠️ Something went wrong. Please try again.",
+  },
+  de: {
+    ok: "✅ Nachricht erfolgreich gesendet! Wir melden uns in Kürze.",
+    ko: "⚠️ Fehler beim Senden. Bitte versuche es erneut.",
+  },
 }[currentLang];
 ---
 
@@ -28,17 +37,39 @@ const msgsByLang = {
     <!-- Config extra -->
     <input type="hidden" name="_captcha" value="false" />
     <input type="hidden" name="_template" value="table" />
-    <input type="hidden" name="_subject" value="Nuevo mensaje desde la landing Aventura Camper" />
-    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+    <input
+      type="hidden"
+      name="_subject"
+      value="Nuevo mensaje desde la landing Aventura Camper"
+    />
+    <input
+      type="text"
+      name="_honey"
+      style="display:none"
+      tabindex="-1"
+      autocomplete="off"
+    />
 
     <label class="field">
       <span class="label">{t.form_name}</span>
-      <input type="text" name="name" required placeholder="Tu nombre" autocomplete="name" />
+      <input
+        type="text"
+        name="name"
+        required
+        placeholder="Tu nombre"
+        autocomplete="name"
+      />
     </label>
 
     <label class="field">
       <span class="label">{t.form_email}</span>
-      <input type="email" name="email" required placeholder="tu@email.com" autocomplete="email" />
+      <input
+        type="email"
+        name="email"
+        required
+        placeholder="tu@email.com"
+        autocomplete="email"
+      />
     </label>
 
     <label class="field field--full">
@@ -47,19 +78,27 @@ const msgsByLang = {
         name="message"
         rows="5"
         required
-        placeholder="Fechas, nº de personas, dudas..."
-      ></textarea>
+        placeholder="Fechas, nº de personas, dudas..."></textarea>
     </label>
 
     <button class="btn" id="sendBtn" type="submit">{t.form_send}</button>
-    <p id="formMsg" class="muted" style="display:none; margin-top:.75rem;" aria-live="polite"></p>
+    <p
+      id="formMsg"
+      class="muted"
+      style="display:none; margin-top:.75rem;"
+      aria-live="polite"
+    >
+    </p>
   </form>
 
   <div class="muted contact-alt">
     <p>
-      <strong>Alternativas:</strong><br/>
-      Email: <a href="mailto:Ajaventuras25@gmail.com">Ajaventuras25@gmail.com</a>
-      · WhatsApp: <a href="https://wa.me/34620323483" rel="nofollow noopener">+34 620 32 34 83</a>
+      <strong>Alternativas:</strong><br />
+      Email: <a href="mailto:Ajaventuras25@gmail.com">Ajaventuras25@gmail.com</a
+      >
+      · WhatsApp: <a href="https://wa.me/34620323483" rel="nofollow noopener"
+        >+34 620 32 34 83</a
+      >
     </p>
   </div>
 </section>
@@ -67,62 +106,61 @@ const msgsByLang = {
 <!-- === Bloque Opiniones Yescapa === -->
 <section class="container" id="reviews">
   <h2 class="h2">Opiniones verificadas (Yescapa)</h2>
-  <iframe
-    src="https://www.yescapa.es/campers/99514#opiniones"
-    loading="lazy"
-    referrerpolicy="no-referrer"
-    style="width:100%;min-height:680px;border:0;border-radius:12px;box-shadow:0 10px 24px rgba(0,0,0,.08);background:#fff"
-    sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-  ></iframe>
-  <p class="muted" style="margin-top:.5rem">
-    Si no ves las opiniones, 
+  <div
+    class="reviews-card text-center"
+    style="margin-top:2rem; padding:2rem; background:var(--bg-card); border-radius:1rem; border:1px solid var(--border);"
+  >
+    <p class="h3" style="margin-bottom:0.5rem">🌟 4.9 / 5</p>
+    <p class="muted" style="margin-bottom:1.5rem">
+      Basado en más de 24 opiniones verificadas
+    </p>
     <a
       class="btn btn-outline"
       href="https://www.yescapa.es/campers/99514#opiniones"
       target="_blank"
-      rel="noopener"
+      rel="noopener noreferrer"
     >
-      ábrelo en Yescapa
-    </a>.
-  </p>
+      Leer opiniones en Yescapa
+    </a>
+  </div>
 </section>
 
 <script is:inline>
-  const form = document.getElementById('contactForm');
-  const msg  = document.getElementById('formMsg');
-  const btn  = document.getElementById('sendBtn');
+  const form = document.getElementById("contactForm");
+  const msg = document.getElementById("formMsg");
+  const btn = document.getElementById("sendBtn");
 
-  form?.addEventListener('submit', async (e) => {
+  form?.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const okText = form.dataset.ok || 'Enviado correctamente.';
-    const koText = form.dataset.ko || 'Error al enviar.';
+    const okText = form.dataset.ok || "Enviado correctamente.";
+    const koText = form.dataset.ko || "Error al enviar.";
 
     btn.disabled = true;
     const originalText = btn.textContent;
-    btn.textContent = '…';
+    btn.textContent = "…";
 
     try {
       const response = await fetch(form.action, {
-        method: 'POST',
+        method: "POST",
         body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
+        headers: { Accept: "application/json" },
       });
 
       if (response.ok) {
         form.reset();
         msg.textContent = okText;
-        msg.style.display = 'block';
-        msg.style.color = 'var(--brand)';
+        msg.style.display = "block";
+        msg.style.color = "var(--brand)";
       } else {
         msg.textContent = koText;
-        msg.style.display = 'block';
-        msg.style.color = '#b91c1c';
+        msg.style.display = "block";
+        msg.style.color = "#b91c1c";
       }
     } catch (err) {
       msg.textContent = koText;
-      msg.style.display = 'block';
-      msg.style.color = '#b91c1c';
+      msg.style.display = "block";
+      msg.style.color = "#b91c1c";
     } finally {
       btn.disabled = false;
       btn.textContent = originalText;

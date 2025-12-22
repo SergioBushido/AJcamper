@@ -26,9 +26,12 @@ const brand = 'Aventura Camper';
     <link rel="mask-icon" href="/favicon.svg" color="#0ea5a3" />
     <link rel="apple-touch-icon" href="/favicon.svg" />
     
+    <!-- Theme Color for Mobile -->
+    <meta name="theme-color" content="#0ea5a3" />
+
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content="alquiler autocaravana, Tenerife, motorhome, camping, turismo, vacaciones" />
+    <meta name="keywords" content="alquiler autocaravana, Tenerife, motorhome, camping, turismo, vacaciones, Fiat Enaire" />
     <meta name="author" content="Aventura Camper" />
     <meta name="robots" content="index, follow" />
     
@@ -46,16 +49,19 @@ const brand = 'Aventura Camper';
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={`${site}/images/hero.jpg`} />
+    <meta property="og:locale" content={lang} />
+    <meta property="og:image" content={new URL('/images/hero.jpg', site).toString()} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="preload" as="image" href="/images/hero.jpg" />
-    <link rel="stylesheet" href="/src/styles/global.css" />
-    <script type="application/ld+json">
+    <link rel="preload" as="image" href="/images/hero.jpg" fetchpriority="high" />
+
+    <script type="application/ld+json" is:inline>
       {JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'Product',
         name: `${brand} — Fiat Enaire 2022 Motorhome Rental`,
-        image: [`${site}/images/hero.jpg`],
+        image: [new URL('/images/hero.jpg', site).toString()],
         description,
         brand: {
           '@type': 'Brand',
@@ -66,7 +72,7 @@ const brand = 'Aventura Camper';
           name: 'Fiat'
         },
         model: 'Enaire',
-        vehicleModelDate: '2022',
+        productionDate: '2022',
         vehicleConfiguration: '4 plazas, 3000kg PMA',
         fuelType: 'Diesel',
         vehicleTransmission: 'Manual',
@@ -77,11 +83,17 @@ const brand = 'Aventura Camper';
           availability: 'https://schema.org/InStock',
           url: canonical,
           validFrom: new Date().toISOString(),
+          priceValidUntil: new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString(),
           seller: {
             '@type': 'Organization',
             name: brand,
             url: site
           }
+        },
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: '4.9',
+          reviewCount: '24'
         },
         additionalProperty: [
           {
@@ -109,8 +121,10 @@ const brand = 'Aventura Camper';
     </script>
   </head>
   <body>
-    <slot />
-        <WhatsappButton />   <!-- botón fijo -->
+    <main>
+      <slot />
+    </main>
+    <WhatsappButton />   <!-- botón fijo -->
 
   </body>
 </html>
