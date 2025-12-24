@@ -7,13 +7,23 @@ import Specs from "~/components/Specs.astro";
 import Contact from "~/components/Contact.astro";
 import t from "~/translations/de.json";
 import Footer from "~/components/Footer.astro";
+const site = Astro.site
+  ? new URL(Astro.site).origin
+  : "https://www.aventuracamper.com";
 const alt = {
-  es: Astro.site?.origin + '/es/',
-  en: Astro.site?.origin + '/en/',
-  de: Astro.site?.origin + '/de/'
+  es: `${site}/es/`,
+  en: `${site}/en/`,
+  de: `${site}/de/`,
 };
 ---
-<BaseLayout title={`${t.brand} — ${t.title}`} description={t.meta_description} lang="de" altHreflangs={alt} priceFrom={95}>
+
+<BaseLayout
+  title={`${t.brand} — ${t.title}`}
+  description={t.meta_description}
+  lang="de"
+  altHreflangs={alt}
+  priceFrom={95}
+>
   <Header t={t} currentLang="de" />
   <Hero t={t} currentLang="de" />
   <Gallery t={t} />
