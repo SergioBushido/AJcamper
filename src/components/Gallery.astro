@@ -1,70 +1,119 @@
 ---
-const { t } = Astro.props as { t:any };
+const { t } = Astro.props as { t: any };
 const images = [
-  { src: '/images/interior-1.jpg', alt: 'Interior 1' },
-  { src: '/images/interior-2.webp', alt: 'Interior 2' },
-  { src: '/images/exterior-1.webp', alt: 'Exterior 1' },
-  { src: '/images/exterior-2.webp', alt: 'Exterior 2' },
-  { src: '/images/interior-3.jpg', alt: 'Interior 3' },
-  { src: '/images/exterior-3.webp', alt: 'Exterior 3' },
-  { src: '/images/interior-4.jpg', alt: 'Interior 4' },
-  { src: '/images/exterior-4.jpg', alt: 'Exterior 4' },
+  { src: "/images/interior-1.jpg", alt: "Interior 1" },
+  { src: "/images/interior-2.webp", alt: "Interior 2" },
+  { src: "/images/exterior-1.webp", alt: "Exterior 1" },
+  { src: "/images/exterior-2.webp", alt: "Exterior 2" },
+  { src: "/images/interior-3.jpg", alt: "Interior 3" },
+  { src: "/images/exterior-3.webp", alt: "Exterior 3" },
+  { src: "/images/interior-4.jpg", alt: "Interior 4" },
+  { src: "/images/exterior-4.jpg", alt: "Exterior 4" },
 ];
 ---
 
 <section id="gallery" class="container" aria-label={t.gallery_title}>
   <h2 class="section-title">{t.gallery_title}</h2>
   <div class="gallery">
-    {images.map((img) => (
-      <figure class="card" tabindex="0">
-        <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
-      </figure>
-    ))}
+    {
+      images.map((img) => (
+        <figure class="card" tabindex="0">
+          <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
+        </figure>
+      ))
+    }
   </div>
 
   <dialog id="lightbox" aria-label="Vista ampliada de la imagen">
     <button class="close-btn" aria-label="Cerrar">✕</button>
+    <button class="nav-btn prev-btn" aria-label="Anterior">❮</button>
     <img id="lightbox-img" alt="" />
+    <button class="nav-btn next-btn" aria-label="Siguiente">❯</button>
   </dialog>
 </section>
 
-<script is:inline>
-  const dlg = document.getElementById('lightbox');
-  const dlgImg = document.getElementById('lightbox-img');
-  const closeBtn = dlg.querySelector('.close-btn');
+<script is:inline define:vars={{ images }}>
+  const dlg = document.getElementById("lightbox");
+  const dlgImg = document.getElementById("lightbox-img");
+  const closeBtn = dlg.querySelector(".close-btn");
+  const prevBtn = dlg.querySelector(".prev-btn");
+  const nextBtn = dlg.querySelector(".next-btn");
 
-  const supportsDialog = typeof HTMLDialogElement === 'function'
-    && typeof dlg.showModal === 'function';
+  let currentIndex = -1;
 
-  function openLightbox(src, alt='') {
-    dlgImg.src = src;
-    dlgImg.alt = alt;
+  const supportsDialog =
+    typeof HTMLDialogElement === "function" &&
+    typeof dlg.showModal === "function";
+
+  function openLightbox(index) {
+    currentIndex = index;
+    updateImage();
     if (supportsDialog) dlg.showModal();
-    else dlg.setAttribute('open', '');
+    else dlg.setAttribute("open", "");
   }
 
   function closeLightbox() {
     if (supportsDialog && dlg.open) dlg.close();
-    dlg.removeAttribute('open');
-    dlgImg.removeAttribute('src');
+    dlg.removeAttribute("open");
+    dlgImg.removeAttribute("src");
+    currentIndex = -1;
   }
 
-  document.querySelectorAll('.gallery .card img').forEach(img => {
-    img.addEventListener('click', () => openLightbox(img.currentSrc || img.src, img.alt));
-    img.closest('.card')?.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
+  function updateImage() {
+    if (currentIndex < 0) return;
+    const imgParam = images[currentIndex];
+    dlgImg.src = imgParam.src;
+    dlgImg.alt = imgParam.alt;
+  }
+
+  function showNext() {
+    currentIndex = (currentIndex + 1) % images.length;
+    updateImage();
+  }
+
+  function showPrev() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateImage();
+  }
+
+  // Event Listeners
+  document.querySelectorAll(".gallery .card img").forEach((img, idx) => {
+    img.addEventListener("click", () => openLightbox(idx));
+    img.closest(".card")?.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        openLightbox(img.currentSrc || img.src, img.alt);
+        openLightbox(idx);
       }
     });
   });
 
-  closeBtn.addEventListener('click', closeLightbox);
-  dlg.addEventListener('click', (e) => {
+  closeBtn.addEventListener("click", closeLightbox);
+  prevBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    showPrev();
+  });
+  nextBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    showNext();
+  });
+
+  dlg.addEventListener("click", (e) => {
     const r = dlgImg.getBoundingClientRect();
-    const outside = e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+    const outside =
+      e.clientX < r.left ||
+      e.clientX > r.right ||
+      e.clientY < r.top ||
+      e.clientY > r.bottom;
     if (outside) closeLightbox();
   });
-  dlgImg.addEventListener('click', closeLightbox);
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+
+  dlgImg.addEventListener("click", closeLightbox);
+
+  document.addEventListener("keydown", (e) => {
+    if (!dlg.hasAttribute("open") && !dlg.open) return;
+
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") showPrev();
+    if (e.key === "ArrowRight") showNext();
+  });
 </script>

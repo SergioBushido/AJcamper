@@ -23,6 +23,7 @@
   "footer_rights": "Alle Rechte vorbehalten",
   "rent_note": "Sie können privat direkt bei uns buchen oder – wenn Sie möchten – über Yescapa mit Versicherung und verifizierten Bewertungen.",
   "cta_yescapa": "Bei Yescapa ansehen",
+  "cta_contact_yescapa": "Kontakt über Yescapa",
   "feature_model": "Fiat Enaire 2022",
   "feature_places": "4 Schlafplätze",
   "feature_autonomy": "10 Tage Autonomie",
@@ -45,7 +46,7 @@
   "specs_model": "Modell",
   "specs_year": "Jahr",
   "specs_seats": "Reiseplätze",
-  "specs_beds": "Schlafplätze",
+  "specs_beds_sleeping": "Schlafplätze",
   "specs_isofix": "Isofix-Befestigungen",
   "specs_length": "Länge",
   "specs_width": "Breite",
@@ -67,4 +68,3 @@
   "specs_bed_1": "Wohnbereich-Bett",
   "specs_bed_2": "Kabinenbett"
 }
-
