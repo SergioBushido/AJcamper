@@ -31,6 +31,7 @@ const { t, currentLang } = Astro.props as {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Yescapa"
+      onclick="window.open(this.href, 'yescapa', 'width=1000,height=800,scrollbars=yes,resizable=yes'); return false;"
     >
       {t.cta_yescapa}
     </a>

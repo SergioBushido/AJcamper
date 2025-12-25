@@ -5,24 +5,24 @@ export const specs = {
   seats: 4,
   beds: 4,
   isofix: 2,
-  
+
   // Dimensiones y peso
   length: '5.6 m',
   width: '2.1 m',
   height: '3.0 m',
   weight: '3000 kg PMA',
-  
+
   // Motor y combustible
   fuel: 'Diesel',
   gearbox: 'Manual',
   consumption: '6-8 L/100km',
   fuelTank: '90 L',
   adBlue: true,
-  
+
   // Depósitos
   waterTank: '100 L',
   wasteTank: '100 L',
-  
+
   // Equipamientos de conducción
   driving: [
     'Dirección asistida',
@@ -35,7 +35,7 @@ export const specs = {
     'Calefacción',
     'Airbags'
   ],
-  
+
   // Equipamientos de vida a bordo
   living: [
     'Calefacción habitáculo',
@@ -44,7 +44,7 @@ export const specs = {
     'Kit de limpieza',
     'Extintor'
   ],
-  
+
   // Cocina y comedor
   kitchen: [
     'Cafetera',
@@ -55,20 +55,20 @@ export const specs = {
     'Fregadero',
     'Kit de vajilla (4 sets)'
   ],
-  
+
   // Baño
   bathroom: [
     'Ducha interior',
     'WC',
     'Lavabo'
   ],
-  
+
   // Exterior
   exterior: [
     'Mesa de exterior',
     '3 sillas de exterior'
   ],
-  
+
   // Autonomía y energía
   autonomy: {
     heating: 'Combustible + Gas',
@@ -78,9 +78,10 @@ export const specs = {
     cable: 'Cable de electricidad',
     days: '10 días de autonomía'
   },
-  
+
   // Camas
-  beds: [
+  // Camas
+  sleeping_arrangements: [
     { name: 'Cama convertible salón', size: '190 cm' },
     { name: 'Cama alcoba', size: '135x190 cm' }
   ]
