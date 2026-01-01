@@ -25,15 +25,26 @@ const { t, currentLang } = Astro.props as {
     <p class="muted" style="margin:.25rem 0 .5rem 0;">
       {t.rent_note}
     </p>
-    <a
-      class="btn btn-outline"
-      href="https://www.yescapa.es/campers/99514"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Yescapa"
-    >
-      {t.cta_yescapa}
-    </a>
+    <div style="display:flex; gap:.75rem; flex-wrap:wrap;">
+      <a
+        class="btn btn-outline"
+        href="https://www.yescapa.es/campers/99514"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Yescapa"
+      >
+        {t.cta_yescapa}
+      </a>
+      <a
+        class="btn btn-outline"
+        href="https://www.camplify.es/vehiculo/alquilar-autocaravana-santa-cruz-de-tenerife-tenerife-ajcamper/144923"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Camplify"
+      >
+        {t.cta_camplify}
+      </a>
+    </div>
   </div>
 
   <picture>

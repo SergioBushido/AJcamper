@@ -103,25 +103,48 @@ const msgsByLang = {
   </div>
 </section>
 
-<!-- === Bloque Opiniones Yescapa === -->
 <section class="container" id="reviews">
-  <h2 class="h2">Opiniones verificadas (Yescapa)</h2>
+  <h2 class="h2">{t.booking_options}</h2>
   <div
-    class="reviews-card text-center"
-    style="margin-top:2rem; padding:2rem; background:var(--card); border-radius:1rem; border:1px solid var(--border);"
+    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top:2rem;"
   >
-    <p class="h3" style="margin-bottom:0.5rem">🌟 4.9 / 5</p>
-    <p class="muted" style="margin-bottom:1.5rem">
-      Basado en más de 24 opiniones verificadas
-    </p>
-    <a
-      class="btn btn-outline"
-      href="https://www.yescapa.es/campers/99514"
-      target="_blank"
-      rel="noopener noreferrer"
+    <!-- Yescapa -->
+    <div
+      class="reviews-card text-center"
+      style="padding:2rem; background:var(--card); border-radius:1rem; border:1px solid var(--border);"
     >
-      {t.cta_contact_yescapa}
-    </a>
+      <p class="h3" style="margin-bottom:0.5rem">🌟 4.9 / 5 (Yescapa)</p>
+      <p class="muted" style="margin-bottom:1.5rem">
+        {t.booking_yescapa_desc}
+      </p>
+      <a
+        class="btn btn-outline"
+        href="https://www.yescapa.es/campers/99514"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {t.cta_contact_yescapa}
+      </a>
+    </div>
+
+    <!-- Camplify -->
+    <div
+      class="reviews-card text-center"
+      style="padding:2rem; background:var(--card); border-radius:1rem; border:1px solid var(--border);"
+    >
+      <p class="h3" style="margin-bottom:0.5rem">Camplify</p>
+      <p class="muted" style="margin-bottom:1.5rem">
+        {t.booking_camplify_desc}
+      </p>
+      <a
+        class="btn btn-outline"
+        href="https://www.camplify.es/vehiculo/alquilar-autocaravana-santa-cruz-de-tenerife-tenerife-ajcamper/144923"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {t.cta_contact_camplify}
+      </a>
+    </div>
   </div>
 </section>
 
